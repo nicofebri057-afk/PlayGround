@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>BlockCraft — Minecraft 3D (Desktop)</title>
+<meta name="description" content="BlockCraft: a fast voxel Minecraft clone for desktop. Mine, build, explore infinite-style terrain." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%236abe30'/><rect y='10' width='16' height='6' fill='%238a5a32'/></svg>" />
+<link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+<div id="app">
+  <canvas id="game"></canvas>
+
+  <!-- Loading -->
+  <div id="loading" class="overlay">
+    <div class="load-box">
+      <div class="logo small">BLOCK<span>CRAFT</span></div>
+      <div class="load-bar"><div id="load-fill"></div></div>
+      <div id="load-text">Generating terrain…</div>
+    </div>
+  </div>
+
+  <!-- Main menu (visible on boot, world renders behind) -->
+  <div id="menu" class="overlay hidden">
+    <div class="menu-inner">
+      <div class="logo">BLOCK<span>CRAFT</span></div>
+      <div class="tagline">A tiny Minecraft for your desktop browser</div>
+      <div class="menu-buttons">
+        <button id="btn-play" class="btn primary">Play</button>
+        <div class="row">
+          <button id="btn-new" class="btn">New World</button>
+          <button id="btn-help" class="btn">How to play</button>
+        </div>
+      </div>
+      <div id="help" class="help hidden">
+        <div class="help-grid">
+          <div><b>W A S D</b><span>Move</span></div>
+          <div><b>Mouse</b><span>Look</span></div>
+          <div><b>Left click</b><span>Mine block</span></div>
+          <div><b>Right click</b><span>Place block</span></div>
+          <div><b>Space</b><span>Jump / fly up</span></div>
+          <div><b>1–9 / wheel</b><span>Pick block</span></div>
+          <div><b>F</b><span>Fly on/off</span></div>
+          <div><b>Shift</b><span>Sprint / fly down</span></div>
+          <div><b>Esc</b><span>Pause</span></div>
+        </div>
+      </div>
+      <div class="seed-row">
+        <label for="seed">Seed</label>
+        <input id="seed" type="text" placeholder="random" autocomplete="off" spellcheck="false" />
+      </div>
+      <div class="foot">WASD + mouse &middot; click to mine &middot; right-click to build &middot; touch supported</div>
+    </div>
+  </div>
+
+  <!-- Pause -->
+  <div id="pause" class="overlay hidden">
+    <div class="panel">
+      <h2>Paused</h2>
+      <button id="btn-resume" class="btn primary">Resume</button>
+      <div class="row">
+        <button id="btn-save" class="btn">Save</button>
+        <button id="btn-menu" class="btn">Menu</button>
+      </div>
+      <p class="muted">Press Esc or click Resume to keep playing.</p>
+    </div>
+  </div>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div id="crosshair">+</div>
+    <div id="topbar">
+      <div id="coords">0, 0, 0</div>
+      <div id="fps">60 fps</div>
+      <div id="fly-tag" class="hidden">FLYING</div>
+    </div>
+    <div id="hint">Left-click mine &middot; Right-click build &middot; F fly</div>
+    <div id="hotbar"></div>
+    <div id="toast" class="hidden"></div>
+  </div>
+
+  <!-- Touch controls -->
+  <div id="touch" class="hidden">
+    <div id="stick"><div id="knob"></div></div>
+    <div id="touch-btns">
+      <button data-act="jump" class="tbtn">▲</button>
+      <button data-act="break" class="tbtn">⛏</button>
+      <button data-act="place" class="tbtn">▣</button>
+      <button data-act="fly" class="tbtn">✈</button>
+    </div>
+  </div>
+</div>
+<script type="importmap">
+{ "imports": { "three": "./three.module.js" } }
+</script>
+<script type="module" src="./main.js"></script>
+</body>
+</html>
